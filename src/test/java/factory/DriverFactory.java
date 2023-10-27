@@ -15,7 +15,7 @@ public class DriverFactory {
         switch (browser) {
             case "CHROME":
 //                WebDriverManager.chromedriver().setup();
-                System.setProperty("webdriver.chrome.driver", "C:\\Users\\ahmed\\IdeaProjects\\AirMaltaSystem\\src\\test\\java\\factory\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "C:\\Users\\ahmed\\IdeaProjects\\AirMaltaTask\\src\\test\\java\\factory\\chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case "FIREFOX":

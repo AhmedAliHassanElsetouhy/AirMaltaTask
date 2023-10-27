@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!-- <suite name="Regression Suite" verbose="2" thread-count="2" parallel="tests"> -->
+<suite name="Regression Suite" verbose="100" thread-count="3"
+	parallel="tests">
+
+	<test name="TestOnChrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="testCases.ReserveFlight" />
+		</classes>
+	</test>
+</suite> 

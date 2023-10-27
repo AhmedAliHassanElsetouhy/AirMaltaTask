@@ -66,7 +66,8 @@ public class BaseTest {
 
     //To click on the specific element by index when elements have same selector
     protected static void clickElementByIndex(WebDriver driver, By locator, int index) {
-        findListOfElements(driver, locator).get(index).click();
+            findListOfElements(driver, locator).get(index).click();
+
     }
 
     //To fins element where have a selector
