@@ -2,6 +2,7 @@ package base;
 
 import factory.DriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -59,15 +60,65 @@ public class BaseTest {
     }
 
     //To count elements that have same selector to use specified element
+//    protected static int getCountForSameElement(WebDriver driver, By locator) {
+//        List<WebElement> elements = findListOfElements(driver, locator);
+//        return elements.size();
+//    }
+
     protected static int getCountForSameElement(WebDriver driver, By locator) {
         List<WebElement> elements = findListOfElements(driver, locator);
-        return elements.size();
+        int count = 0;
+
+        for (WebElement element : elements) {
+            if (element.isEnabled()) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    protected static WebElement selectFirstEnabledItem(WebDriver driver, By locator) {
+        List<WebElement> elements = findListOfElements(driver, locator);
+
+        for (WebElement element : elements) {
+            if (element.isEnabled()) {
+                return element;
+            }
+        }
+
+        return null; // or throw an exception if no enabled element is found
     }
 
     //To click on the specific element by index when elements have same selector
-    protected static void clickElementByIndex(WebDriver driver, By locator, int index) {
-            findListOfElements(driver, locator).get(index).click();
+//    protected static void clickElementByIndex(WebDriver driver, By locator, int index) {
+//            findListOfElements(driver, locator).get(index).click();
+//    }
 
+    protected static void clickElementByIndex(WebDriver driver, By locator, int index) {
+        List<WebElement> elements = findListOfElements(driver, locator);
+        int currentIndex = index;
+
+        while (currentIndex < elements.size()) {
+            WebElement element = elements.get(currentIndex);
+
+            if (isElementClickable(element)) {
+                element.click();
+                break;
+            }
+
+            currentIndex++;
+        }
+    }
+
+    private static boolean isElementClickable(WebElement element) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(30));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     //To fins element where have a selector

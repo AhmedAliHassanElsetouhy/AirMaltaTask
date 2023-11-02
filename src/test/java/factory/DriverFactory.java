@@ -10,7 +10,7 @@ public class DriverFactory {
 
     //Use this function to avoid problem of mismatching browser version because no available driver manager match
     public WebDriver initializeDriver() {
-        String browser = System.getProperty("browser", "CHROME");
+        String browser = System.getProperty("browser", "FIREFOX");
         WebDriver driver;
         switch (browser) {
             case "CHROME":

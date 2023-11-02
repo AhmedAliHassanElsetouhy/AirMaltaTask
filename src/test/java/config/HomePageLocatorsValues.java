@@ -15,7 +15,9 @@ public class HomePageLocatorsValues {
     public static final String DEPARTING_DATE_LOCATOR = "//input[@name=\"DepartureDate1\"]";
     public static final String DAY_PICKER_INPUT_LOCATOR = "//div[@class=\"DayPicker-Months\"]";
 //    public static final String DEPARTURE_CALENDER_TODAY_LOCATOR = "//div[@class=\"DayPicker-Day DayPicker-Day--today\"]";
-    public static final String DEPARTURE_CALENDER_TODAY_LOCATOR = "//div[starts-with(@class, 'DayPicker-Day DayPicker-Day')]";
+//    public static final String DEPARTURE_CALENDER_TODAY_LOCATOR = "//div[starts-with(@class, 'DayPicker-Day DayPicker-Day')]";
+    public static final String DEPARTURE_CALENDER_TODAY_LOCATOR = "//div[contains(@class, 'DayPicker-Day') and not(contains(@class, 'DayPicker-Day--disabled'))]";
+
     public static final String RETURN_DATE_LOCATOR = "//input[@name=\"DepartureDate2\"]";
     public static final String RETURN_CALENDER_LOCATOR = "//div[@class=\"date-picker-day-cell\"]";
     public static final String FIND_FLIGHT_LOCATOR = "//button[@class=\"btn btn-primary btn-lg d-none d-md-block\"]";

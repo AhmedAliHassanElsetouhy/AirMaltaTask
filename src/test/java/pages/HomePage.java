@@ -54,7 +54,6 @@ public class HomePage extends BaseTest {
         clickElement(driver, departingFromSearchListLocator);
         sendKeysElement(driver, departingFromTxtFieldLocator, ConfigUtils.getInstance().getDepartingFrom());
         sendKeysElement(driver, departingFromTxtFieldLocator, Keys.ENTER.toString());
-//        waitForElementToBeVisible(driver, departingFromSelectedOptionLocator);
         clickElement(driver, departingFromSelectedOptionLocator);
         assertThatElementAppear(driver, flyingToSearchListLocator);
         return this;
@@ -72,8 +71,8 @@ public class HomePage extends BaseTest {
         Thread.sleep(500);
         clickElement(driver, departureDateLocator);
         moveToElement(driver, dayPickerInputLocator);
-//        clickElement(driver, departureCalenderTodayLocator);
-        clickElementByIndex(driver, departureCalenderTodayLocator, (getCountForSameElement(driver, departureCalenderTodayLocator)));
+        clickElement(driver, departureCalenderTodayLocator);
+        selectFirstEnabledItem(driver, departureCalenderTodayLocator);
         assertThatElementAppear(driver, returnDateLocator);
         return this;
     }
@@ -81,6 +80,7 @@ public class HomePage extends BaseTest {
     public OutboundPage selectReturnDate() {
         clickElement(driver, returnDateLocator);
         moveToElement(driver, dayPickerInputLocator);
+        System.out.println((getCountForSameElement(driver, returnCalendarLocator)) - 1);
         clickElementByIndex(driver, returnCalendarLocator, (getCountForSameElement(driver, returnCalendarLocator)) - 1);
         clickElement(driver, findFlightLocator);
         return new OutboundPage(driver);
